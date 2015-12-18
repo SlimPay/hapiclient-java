@@ -29,4 +29,4 @@ For Java 5 to 7 included, you also need to add:
 
 # Use
 
-Examples and full working snippets are available in the [HAPI Crawler](http://www.slimpay.net/rest-hapi-crawler/).
+Examples and full working snippets are available in our [HAPI Browser](https://dev.slimpay.com/hapi/browser).
