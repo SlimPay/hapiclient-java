@@ -101,10 +101,6 @@
 			    </execution>
 			  </executions>
 			</plugin>
-<<<<<<< HEAD
-		</plugins>
-	</build>
-=======
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -138,5 +134,4 @@
 		<developerConnection>scm:git:git@github.com:slimpay/hapiclient-java.git</developerConnection>
 		<url>git@github.com:slimpay/hapiclient-java.git</url>
 	</scm>
->>>>>>> slimpay/master
 </project>

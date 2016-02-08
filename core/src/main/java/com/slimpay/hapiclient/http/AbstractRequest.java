@@ -163,20 +163,20 @@ abstract class AbstractRequest {
 
 		/**
 		 * Sets the value of a URL variable.<br>
-		 * The URL must be <a href="http://tools.ietf.org/html/rfc6570" title="RFC6570 URI Templates">templated</a>
+		 * The URL must be <a href="http://tools.ietf.org/html/rfc6570">templated</a>
 		 * for the value to be used.
 		 * 
 		 * <h2>Supported Value Types</h2>
 		 * <ul>
 		 * <li>primitive and Object types such as:
 		 * 	<ul>
-		 * 		<li>int & Integer</li>
-		 * 		<li>double & Double</li>
-		 * 		<li>char & Character</li>
-		 * 		<li>float & Float</li>
-		 * 		<li>boolean & Boolean</li>
-		 * 		<li>short & Short</li>
-		 * 		<li>long & Long</li>
+		 * 		<li>int &amp; Integer</li>
+		 * 		<li>double &amp; Double</li>
+		 * 		<li>char &amp; Character</li>
+		 * 		<li>float &amp; Float</li>
+		 * 		<li>boolean &amp; Boolean</li>
+		 * 		<li>short &amp; Short</li>
+		 * 		<li>long &amp; Long</li>
 		 * 	</ul>
 		 * </li>
 		 * <li>
@@ -191,10 +191,10 @@ abstract class AbstractRequest {
 		 * 		Values that are not strings are rendered into the URI by calling its toString() method.
 		 * </li>
 		 * </ul>
-		 * @see {@link https://github.com/damnhandy/Handy-URI-Templates}
 		 * @param variableName	The name of the URL variable.
 		 * @param value			The value of the URL variable.
 		 * @return	The builder.
+		 * @see <a href="https://github.com/damnhandy/Handy-URI-Templates">Handy URI Templates</a>
 		 */
 		public Builder setUrlVariable(String variableName, Object value) {
 			this.urlVariables.put(variableName, value);
@@ -229,8 +229,10 @@ abstract class AbstractRequest {
 		 * <li>Content-Type (if a MessageBody is set)</li>
 		 * <li>Content-Length (if a MessageBody is set)</li>
 		 * <li>Authorization (by the AuthenticationMethod)</li>
+		 * <li>Accept (application/json or application/hal+json
+		 * 		depending on profile being set or not</li>
 		 * </ul>
-		 * @param headers	The optional headers.
+		 * @param header	The optional header.
 		 * @return	The builder.
 		 */
 		public Builder addHeader(Header header) {
@@ -240,6 +242,7 @@ abstract class AbstractRequest {
 		
 		/**
 		 * Adds multiple optional headers.
+		 * @param headers	The optional headers.
 		 * @return	The builder.
 		 * @see #addHeader(Header)
 		 */

@@ -38,7 +38,7 @@ public final class Request extends AbstractRequest {
 		private final String url;
 		
 		/**
-		 * @param rel	The URL.
+		 * @param url	The URL.
 		 */
 		public Builder(String url) {
 			super();

@@ -90,8 +90,8 @@ public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 	 * Adds the authorization header to the request with a valid token.
 	 * If we do not have a valid token yet, we send a request for one.
 	 * @param hapiClient		The client used to send the request.
-	 * @param httpRequest	The HTTP request before it is sent.
-	 * @throws HttpException 
+	 * @param httpRequest		The HTTP request before it is sent.
+	 * @throws HttpException if the Authentication request fails
 	 */
 	public synchronized void authorizeRequest(final HapiClient hapiClient, final HttpUriRequest httpRequest) throws HttpException {
 		if (isRequestAuthorized(httpRequest))
@@ -196,6 +196,7 @@ public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 		/**
 		 * @param tokenEndPointUrl	The server access token end point URL
 		 * 							(absolute or relative to the client API URL)
+		 * @return	The builder.
 		 */
 		public Builder setTokenEndPointUrl(String tokenEndPointUrl) {
 			this.tokenEndPointUrl = tokenEndPointUrl;
@@ -204,6 +205,7 @@ public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 
 		/**
 		 * @param userid	The first part of the Basic authentication
+		 * @return	The builder.
 		 */
 		public Builder setUserid(String userid) {
 			this.userid = userid;
@@ -212,6 +214,7 @@ public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 
 		/**
 		 * @param password	The second part of the Basic authentication
+		 * @return	The builder.
 		 */
 		public Builder setPassword(String password) {
 			this.password = password;
@@ -220,6 +223,7 @@ public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 
 		/**
 		 * @param grantType		The grant_type parameter
+		 * @return	The builder.
 		 */
 		public Builder setGrantType(String grantType) {
 			this.grantType = grantType;
@@ -228,6 +232,7 @@ public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 
 		/**
 		 * @param scope		The scope parameter
+		 * @return	The builder.
 		 */
 		public Builder setScope(String scope) {
 			this.scope = scope;
@@ -239,11 +244,16 @@ public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 		 * with a valid token. If the token is not valid anymore,
 		 * it will just be ignored.
 		 * @param token		A valid token
+		 * @return	The builder.
 		 */
-		public void setToken(ExpirableToken token) {
+		public Builder setToken(ExpirableToken token) {
 			this.token = token;
+			return this;
 		}
 
+		/**
+		 * @return {@link Oauth2BasicAuthentication}
+		 */
 		public Oauth2BasicAuthentication build() {
 			return new Oauth2BasicAuthentication(tokenEndPointUrl, userid, password, grantType, scope, token);
 		}

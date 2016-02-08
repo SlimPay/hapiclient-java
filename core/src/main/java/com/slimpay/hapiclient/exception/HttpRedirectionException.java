@@ -9,7 +9,7 @@ import org.apache.http.client.methods.HttpRequestBase;
  * <p>
  * Note: Since the Apache HTTP client do not handle 3xx status code,
  * we may do it at the HAPI Client level later on.
- * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3
+ * @see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3">10.3 Redirection 3xx</a>
  */
 @NotThreadSafe
 public class HttpRedirectionException extends HttpException {

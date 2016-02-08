@@ -17,7 +17,7 @@ public final class JsonBody implements MessageBody {
 	 * You can build a JsonObject by using a builder:
 	 * <p>
 	 * <code>Json.createObjectBuilder()</code>
-	 * @param jsonObject
+	 * @param jsonObject The JsonObject as Message Body.
 	 */
 	public JsonBody(JsonObject jsonObject) {
 		this.jsonObject = jsonObject;
@@ -28,7 +28,8 @@ public final class JsonBody implements MessageBody {
 	 * is built right when calling this constructor.
 	 * Any modification to the JsonObjectBuilder won't
 	 * affect the JsonBody.
-	 * @param jsonObjectBuilder
+	 * @param jsonObjectBuilder The Builder from which the JsonObject
+	 * 							will be extracted.
 	 */
 	public JsonBody(JsonObjectBuilder jsonObjectBuilder) {
 		this.jsonObject = jsonObjectBuilder.build();

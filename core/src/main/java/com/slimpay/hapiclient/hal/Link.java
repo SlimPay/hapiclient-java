@@ -8,11 +8,10 @@ import org.apache.http.annotation.ThreadSafe;
 /**
  * The Link Object described in the
  * JSON Hypertext Application Language (draft-kelly-json-hal-07)
- * @see https://tools.ietf.org/html/draft-kelly-json-hal-07#section-5
+ * @see <a href="https://tools.ietf.org/html/draft-kelly-json-hal-07#section-5">The HAL Specification Section 5</a>
  */
 @ThreadSafe
 public final class Link {
-	
 	private final String href;
 	private final Boolean templated;
 	private final String type;
@@ -21,7 +20,6 @@ public final class Link {
 	private final String profile;
 	private final String title;
 	private final String hreflang;
-
 	
 	Link(String href, Boolean templated, String type, String deprecation,
 					String name, String profile, String title, String hreflang) {
@@ -44,6 +42,7 @@ public final class Link {
 	 * Its value is either a URI [RFC3986] or a URI Template [RFC6570].<br>
 	 * If the value is a URI Template then the Link Object SHOULD have a
 	 * "templated" attribute whose value is true.
+	 * @return String
 	 */
 	public String getHref() {
 		return href;
@@ -55,6 +54,7 @@ public final class Link {
 	 * property is a URI Template.<br>
 	 * Its value SHOULD be considered false if it is undefined or any other
 	 * value than true.
+	 * @return boolean
 	 */
 	public boolean isTemplated() {
 		return templated != null ? templated.booleanValue() : false;
@@ -64,6 +64,7 @@ public final class Link {
 	 * OPTIONAL<br>
 	 * Its value is a string used as a hint to indicate the media type
 	 * expected when dereferencing the target resource.
+	 * @return String
 	 */
 	public String getType() {
 		return type;
@@ -79,6 +80,7 @@ public final class Link {
 	 * property.  The notification SHOULD include the deprecation property's
 	 * value so that a client maintainer can easily find information about
 	 * the deprecation.
+	 * @return String
 	 */
 	public String getDeprecation() {
 		return deprecation;
@@ -88,6 +90,7 @@ public final class Link {
 	 * OPTIONAL<br>
 	 * Its value MAY be used as a secondary key for selecting Link Objects
 	 * which share the same relation type.
+	 * @return String
 	 */
 	public String getName() {
 		return name;
@@ -97,6 +100,7 @@ public final class Link {
 	 * OPTIONAL<br>
 	 * Its value is a string which is a URI that hints about the profile (as
 	 * defined by [I-D.wilde-profile-link]) of the target resource.
+	 * @return String
 	 */
 	public String getProfile() {
 		return profile;
@@ -106,6 +110,7 @@ public final class Link {
 	 * OPTIONAL<br>
 	 * Its value is a string and is intended for labelling the link with a
 	 * human-readable identifier (as defined by [RFC5988]).
+	 * @return String
 	 */
 	public String getTitle() {
 		return title;
@@ -115,6 +120,7 @@ public final class Link {
 	 * OPTIONAL<br>
 	 * Its value is a string and is intended for indicating the language of
 	 * the target resource (as defined by [RFC5988]).
+	 * @return String
 	 */
 	public String getHreflang() {
 		return hreflang;

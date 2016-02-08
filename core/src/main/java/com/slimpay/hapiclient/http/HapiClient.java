@@ -93,6 +93,7 @@ public final class HapiClient implements Closeable {
 	}
 	
 	/**
+	 * @return The API URL.
 	 * @see Builder#setApiUrl(String)
 	 */
 	public String getApiUrl() {
@@ -100,6 +101,7 @@ public final class HapiClient implements Closeable {
 	}
 	
 	/**
+	 * @return The entry point URL.
 	 * @see Builder#setEntryPointUrl(String)
 	 */
 	public String getEntryPointUrl() {
@@ -107,6 +109,7 @@ public final class HapiClient implements Closeable {
 	}
 	
 	/**
+	 * @return The profile.
 	 * @see Builder#setProfile(String)
 	 */
 	public String getProfile() {
@@ -114,6 +117,7 @@ public final class HapiClient implements Closeable {
 	}
 	
 	/**
+	 * @return The Authentication Method.
 	 * @see Builder#setAuthenticationMethod(AuthenticationMethod)
 	 */
 	public AuthenticationMethod getAuthenticationMethod() {
@@ -133,7 +137,7 @@ public final class HapiClient implements Closeable {
 	 * (if {@link Builder#setApiUrl(String)} is set).
 	 * @param request	The {@link Request}
 	 * @return	The {@link Resource} returned by the server.
-	 * @throws	HttpException
+	 * @throws	HttpException if the request fails.
 	 */
 	public Resource send(final Request request)
 			throws HttpException {
@@ -173,10 +177,10 @@ public final class HapiClient implements Closeable {
 	 * <p>
 	 * The HTTP response is then closed and its
 	 * body message may be impossible to be read again.
-	 * @param httpResponse
-	 * @return	The String representation of the body message.
-	 * @throws UnparsableResponseException
-	 * @see http://hc.apache.org/httpcomponents-core-4.4.x/tutorial/html/fundamentals.html#d5e84
+	 * @param httpResponse The HTTP response.
+	 * @return The String representation of the body message.
+	 * @throws UnparsableResponseException if the response is unreadable.
+	 * @see <a href="http://hc.apache.org/httpcomponents-core-4.4.x/tutorial/html/fundamentals.html#d5e84">HTTP entity</a>
 	 */
 	private static String consumeResponse(CloseableHttpResponse httpResponse)
 			throws UnparsableResponseException {
@@ -191,7 +195,11 @@ public final class HapiClient implements Closeable {
 	
 	/**
 	 * Follows a link on the entry point Resource.
-	 * @see #send(Follow, Resource)
+	 * @param follow	The Follow object containing the relation name,
+	 * 					the method and eventually the data and/or headers.
+	 * @return The Resource returned by the server.
+	 * @throws HttpException if the request fails.
+	 * @throws RelNotFoundException if the Relation Name is inexistant in the Resource.
 	 */
 	public Resource send(final Follow follow)
 			throws HttpException, RelNotFoundException {
@@ -211,9 +219,9 @@ public final class HapiClient implements Closeable {
 	 * @param follow	The Follow object containing the relation name,
 	 * 					the method and eventually the data and/or headers.
 	 * @param resource	The resource containing the link
-	 * @return	The Resource returned by the server.
-	 * @throws	HttpException
-	 * @throws RelNotFoundException
+	 * @return The Resource returned by the server.
+	 * @throws HttpException if the request fails.
+	 * @throws RelNotFoundException if the Relation Name is inexistant in the Resource.
 	 */
 	public Resource send(final Follow follow, final Resource resource)
 			throws HttpException, RelNotFoundException {
@@ -235,7 +243,11 @@ public final class HapiClient implements Closeable {
 	 * Follows one or more consecutive links, each link
 	 * being in the Resource returned by the previous link
 	 * starting by the entry point Resource.
-	 * @see #send(List, Resource)
+	 * @param follow	The list of Follow objects containing the relation name,
+	 * 					the method and eventually the data and/or headers.
+	 * @return The Resource returned by the server.
+	 * @throws HttpException if the request fails.
+	 * @throws RelNotFoundException if the Relation Name is inexistant in the Resource.
 	 */
 	public Resource send(final List<Follow> follow)
 			throws HttpException, RelNotFoundException {
@@ -245,12 +257,17 @@ public final class HapiClient implements Closeable {
 	/**
 	 * Follows one or more consecutive links, each link
 	 * being in the Resource returned by the previous link.
-	 * @see #send(Follow, Resource)
+	 * @param follow	The list if Follow objects containing the relation name,
+	 * 					the method and eventually the data and/or headers.
+	 * @param resource	The resource containing the link
+	 * @return The Resource returned by the server.
+	 * @throws HttpException if the request fails.
+	 * @throws RelNotFoundException if the Relation Name is inexistant in the Resource.
 	 */
 	public Resource send(final List<Follow> follow, final Resource resource)
 			throws HttpException, RelNotFoundException {
 		if (follow.size() == 0)
-			throw new IllegalArgumentException("The follows list is empty.");
+			throw new IllegalArgumentException("The follow list is empty.");
 		
 		Resource lastResource = resource;
 		for (Follow hop : follow)
@@ -267,7 +284,7 @@ public final class HapiClient implements Closeable {
 	 * and <strong>only once</strong> per HapiClient instance
 	 * (and cached as an attribute).
 	 * @return	The entry point Resource.
-	 * @throws HttpException 
+	 * @throws HttpException if the request fails.
 	 * @see Builder#setEntryPointUrl(String)
 	 */
 	public synchronized Resource getEntryPointResource()

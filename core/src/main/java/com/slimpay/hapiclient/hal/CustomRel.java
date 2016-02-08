@@ -11,8 +11,8 @@ import org.apache.http.annotation.ThreadSafe;
  * <li>section 8.2 of the HAL specification (as custom link relation types)</li>
  * <li>section 4 of the RFC5988 - Web Linking document</li>
  * </ul>
- * @see https://tools.ietf.org/html/draft-kelly-json-hal-07#section-8.2
- * @see https://tools.ietf.org/html/rfc5988#section-4
+ * @see <a href="https://tools.ietf.org/html/draft-kelly-json-hal-07#section-8.2">The HAL Specification Section 8.2</a>
+ * @see <a href="https://tools.ietf.org/html/rfc5988#section-4">RFC 5988 Section 4</a>
  */
 @ThreadSafe
 public final class CustomRel implements Rel {
@@ -22,7 +22,8 @@ public final class CustomRel implements Rel {
 	
 	/**
 	 * An Extension Relation Type.
-	 * @see https://tools.ietf.org/html/rfc5988#section-4.2
+	 * @param uri The Relation Name
+	 * @see <a href="https://tools.ietf.org/html/rfc5988#section-4.2">RFC 5988 Section 4.2</a>
 	 */
 	public CustomRel(URI uri) {
 		String name = uri.toString().trim();
@@ -35,7 +36,8 @@ public final class CustomRel implements Rel {
 	/**
 	 * An Extension Relation Type SHOULD be an URI.
 	 * <em>SHOULD</em>... so we allow a regular string.
-	 * @see https://tools.ietf.org/html/rfc5988#section-4.2
+	 * @param name The Relation Name
+	 * @see <a href="https://tools.ietf.org/html/rfc5988#section-4.2">RFC 5988 Section 4.2</a>
 	 */
 	public CustomRel(String name) {
 		if (name.trim().isEmpty())
@@ -52,7 +54,9 @@ public final class CustomRel implements Rel {
 	 * <strong>prefix</strong> used as specified in the
 	 * <a href="https://tools.ietf.org/html/draft-kelly-json-hal-07#section-8.2">section 8.2</a>
 	 * of the HAL Specification.
-	 * @see http://www.w3.org/TR/2009/CR-curie-20090116/
+	 * @param prefix		The prefix of the CURIE.
+	 * @param reference		The reference of the CURIE.
+	 * @see <a href="http://www.w3.org/TR/2009/CR-curie-20090116/">W3C CURIE Syntax 1.0</a>
 	 */
 	public CustomRel(String prefix, String reference) {
 		if (prefix.trim().isEmpty())
@@ -79,7 +83,7 @@ public final class CustomRel implements Rel {
 	/**
 	 * <blockquote>When extension relation types are compared, they MUST be compared as
 	 * strings [...] in a case-insensitive fashion.</blockquote>
-	 * @see https://tools.ietf.org/html/rfc5988#section-4.2
+	 * @see <a href="https://tools.ietf.org/html/rfc5988#section-4.2">RFC 5988 Section 4.2</a>
 	 */
 	@Override
 	public boolean equals(Object obj) {

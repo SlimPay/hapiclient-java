@@ -13,8 +13,8 @@ import java.io.Serializable;
  * <li>{@link RegisteredRel Registered Relation Type}</li>
  * <li>{@link CustomRel Extension Relation Type}</li>
  * </ul>
- * @see https://tools.ietf.org/html/draft-kelly-json-hal-07#section-8.2
- * @see https://tools.ietf.org/html/rfc5988#section-4
+ * @see <a href="https://tools.ietf.org/html/draft-kelly-json-hal-07#section-8.2">The HAL Specification Section 8.2</a>
+ * @see <a href="https://tools.ietf.org/html/rfc5988#section-4">RFC 5988 Section 4</a>
  */
 public interface Rel extends Serializable {
 	

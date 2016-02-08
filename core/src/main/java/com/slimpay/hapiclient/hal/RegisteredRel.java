@@ -4,7 +4,7 @@ package com.slimpay.hapiclient.hal;
  * The link relation types registered by the IANA Registry.
  * <p>
  * <strong>Last updated:</strong> 2015-01-21
- * @see http://www.iana.org/assignments/link-relations/link-relations.xhtml
+ * @see <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">IANA Link Relation Types</a>
  */
 public enum RegisteredRel implements Rel {
 	/**

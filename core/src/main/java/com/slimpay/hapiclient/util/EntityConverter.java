@@ -50,10 +50,10 @@ public class EntityConverter {
 	
 	/**
 	 * Reads the content of an HttpEntity and returns it as a String.
-	 * @param entity
+	 * @param entity The HTTP Entity
 	 * @return String or null if entity is null
-	 * @throws IOException 
-	 * @throws ParseException 
+	 * @throws IOException if an error occurs reading the input stream
+	 * @throws ParseException if header elements cannot be parsed
 	 */
 	public static String entityToString(HttpEntity entity) throws ParseException, IOException {
 		if (entity == null)

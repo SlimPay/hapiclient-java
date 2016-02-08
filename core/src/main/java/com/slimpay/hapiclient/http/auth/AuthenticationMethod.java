@@ -10,7 +10,7 @@ public interface AuthenticationMethod {
 	 * This is called right before sending the HTTP request.
 	 * @param hapiClient	The client used to send the request.
 	 * @param httpRequest	The HTTP request before it is sent.
-	 * @throws HttpException
+	 * @throws HttpException if the Authentication request fails
 	 */
 	public void authorizeRequest(final HapiClient hapiClient, final HttpUriRequest httpRequest) throws HttpException;
 }

@@ -8,9 +8,9 @@ import com.slimpay.hapiclient.hal.Resource;
 
 /**
  * Raised when the HTTP status code is not equal to 2xx.
- * @see {@link HttpRedirectionException} for 3xx
- * @see {@link HttpClientErrorException} for 4xx
- * @see {@link HttpServorErrorException} for 5xx
+ * @see com.slimpay.hapiclient.exception.HttpRedirectionException HttpRedirectionException (3xx)
+ * @see com.slimpay.hapiclient.exception.HttpClientErrorException HttpClientErrorException (4xx)
+ * @see com.slimpay.hapiclient.exception.HttpServerErrorException HttpServerErrorException (5xx)
  */
 @NotThreadSafe
 public class HttpException extends Exception {
@@ -39,7 +39,7 @@ public class HttpException extends Exception {
 	 * the message body of the response since it has already been
 	 * consumed once. Please use {@link HttpException#getResponseBody()}.
 	 * @return The HTTP response causing the Exception.
-	 * @see http://hc.apache.org/httpcomponents-core-4.4.x/tutorial/html/fundamentals.html#d5e84
+	 * @see <a href="http://hc.apache.org/httpcomponents-core-4.4.x/tutorial/html/fundamentals.html#d5e84">HTTP entity</a>
 	 */
 	public CloseableHttpResponse getResponse() {
 		return response;

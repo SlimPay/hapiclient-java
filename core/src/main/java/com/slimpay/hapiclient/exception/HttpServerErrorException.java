@@ -6,7 +6,7 @@ import org.apache.http.client.methods.HttpRequestBase;
 
 /**
  * HTTP Status Code 5xx
- * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5
+ * @see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5">10.5 Server Error 5xx</a>
  */
 @NotThreadSafe
 public class HttpServerErrorException extends HttpException {

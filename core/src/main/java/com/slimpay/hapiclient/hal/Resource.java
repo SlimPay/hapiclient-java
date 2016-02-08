@@ -27,7 +27,7 @@ import com.slimpay.hapiclient.exception.RelNotFoundException;
 /**
  * The Resource Object described in the
  * JSON Hypertext Application Language (draft-kelly-json-hal-07)
- * @see https://tools.ietf.org/html/draft-kelly-json-hal-07#section-4
+ * @see <a href="https://tools.ietf.org/html/draft-kelly-json-hal-07#section-4">The HAL Specification Section 4</a>
  */
 @ThreadSafe
 public final class Resource implements Serializable {
@@ -58,7 +58,7 @@ public final class Resource implements Serializable {
 	 * is an object that can be either a Link or a Read-Only List of Links.
 	 * <p>
 	 * Note that there is no guarantees as to the order of the links. 
-	 * @return A Read-Only Map<String, Object> (may be empty but not null)
+	 * @return A Read-Only Map&lt;String, Object&gt; (may be empty but not null)
 	 */
 	public Map<Rel, Object> getAllLinks() {
 		return links;
@@ -70,7 +70,7 @@ public final class Resource implements Serializable {
 	 * is an object that can be either a Resource or A Read-Only List of Resources.
 	 * <p>
 	 * Note that there is no guarantees as to the order of the embedded resources. 
-	 * @return A Read-Only Map<String, Object> (may be empty but not null)
+	 * @return A Read-Only Map&lt;String, Object&gt; (may be empty but not null)
 	 */
 	public Map<Rel, Object> getAllEmbeddedResources() {
 		return embeddedResources;
@@ -80,8 +80,8 @@ public final class Resource implements Serializable {
 	 * Finds a unique link by its relation type.
 	 * @param rel	The relation type ({@link Rel})
 	 * @return	The Link referenced by the given rel.
-	 * @throws LinkNotUniqueException
-	 * @throws RelNotFoundException
+	 * @throws LinkNotUniqueException if the Rel points to an array of links.
+	 * @throws RelNotFoundException if the Rel is inexistant in the Resource.
 	 */
 	public Link getLink(Rel rel) {
 		Object link = links.get(rel);
@@ -100,8 +100,8 @@ public final class Resource implements Serializable {
 	 * Note that there is no guarantees as to the order of the links. 
 	 * @param rel	The relation type ({@link Rel})
 	 * @return	A Read-Only List of links referenced by the given rel.
-	 * @throws LinkUniqueException
-	 * @throws RelNotFoundException
+	 * @throws LinkUniqueException if the Rel points to a unique link.
+	 * @throws RelNotFoundException if the Rel is inexistant in the Resource.
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Link> getLinks(Rel rel) {
@@ -120,8 +120,9 @@ public final class Resource implements Serializable {
 	 * Finds a unique embedded resource by its relation type.
 	 * @param rel	The relation type ({@link Rel})
 	 * @return	The Resource referenced by the given rel.
-	 * @throws EmbeddedResourceNotUniqueException
-	 * @throws RelNotFoundException
+	 * @throws EmbeddedResourceNotUniqueException if the Rel
+	 * 			points to an array of embedded resourses.
+	 * @throws RelNotFoundException if the Rel is inexistant in the Resource.
 	 */
 	public Resource getEmbeddedResource(Rel rel) {
 		Object resource = embeddedResources.get(rel);
@@ -140,8 +141,8 @@ public final class Resource implements Serializable {
 	 * Note that there is no guarantees as to the order of the resources. 
 	 * @param rel	The relation type ({@link Rel})
 	 * @return	The array of embedded resources referenced by the given rel.
-	 * @throws EmbeddedResourceUniqueException
-	 * @throws RelNotFoundException
+	 * @throws EmbeddedResourceUniqueException if the Rel points to a unique embedded resource.
+	 * @throws RelNotFoundException if the Rel is inexistant in the Resource.
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Resource> getEmbeddedResources(Rel rel) {
@@ -172,6 +173,8 @@ public final class Resource implements Serializable {
 		}
 
 		/**
+		 * @param state The state.
+		 * @return The builder.
 		 * @see Resource#getState()
 		 */
 		public Builder setState(JsonObject state) {
@@ -180,6 +183,8 @@ public final class Resource implements Serializable {
 		}
 
 		/**
+		 * @param links The links.
+		 * @return The builder.
 		 * @see Resource#getAllLinks()
 		 */
 		public Builder setLinks(Map<Rel, Object> links) {
@@ -188,6 +193,8 @@ public final class Resource implements Serializable {
 		}
 
 		/**
+		 * @param embeddedResources The embedded resources.
+		 * @return The builder.
 		 * @see Resource#getAllEmbeddedResources()
 		 */
 		public Builder setEmbeddedResources(Map<Rel, Object> embeddedResources) {
@@ -195,6 +202,9 @@ public final class Resource implements Serializable {
 			return this;
 		}
 
+		/**
+		 * @return	The built Resource.
+		 */
 		public Resource build() {
 			return new Resource(state, links, embeddedResources);
 		}
@@ -203,6 +213,7 @@ public final class Resource implements Serializable {
 	/**
 	 * Builds a Resource from its JSON representation.
 	 * @param json	A JsonObject representing the resource.
+	 * @return The build Resource.
 	 */
 	public static Resource fromJson(JsonObject json) {
 		return new Builder()
@@ -217,7 +228,8 @@ public final class Resource implements Serializable {
 	 * <p>
 	 * Note: a null or empty String will be converted to "{}".
 	 * @param json	A JSON String representing the resource.
-	 * @throws JsonException
+	 * @return The build Resource.
+	 * @throws JsonException if the String could not be parsed as JSON.
 	 */
 	public static Resource fromJson(String json) throws JsonException {
 		if (json == null || json.trim().isEmpty())
@@ -231,6 +243,8 @@ public final class Resource implements Serializable {
 	}
 
 	/**
+	 * @param json The response as a JsonObject.
+	 * @return The state as a JsonObject.
 	 * @see Resource#getState()
 	 */
 	private static JsonObject extractState(JsonObject json) {
@@ -243,6 +257,8 @@ public final class Resource implements Serializable {
 	}
 
 	/**
+	 * @param json The response as a JsonObject.
+	 * @return The links as a Map.
 	 * @see Resource#getAllLinks()
 	 */
 	private static Map<Rel, Object> extractLinks(JsonObject json) {
@@ -275,6 +291,8 @@ public final class Resource implements Serializable {
 	}
 
 	/**
+	 * @param json The response as a JsonObject.
+	 * @return The embedded resources as a Map.
 	 * @see Resource#getAllEmbeddedResources()
 	 */
 	private static Map<Rel, Object> extractEmbeddedResources(JsonObject json) {
@@ -334,10 +352,9 @@ public final class Resource implements Serializable {
 				embeddedResources.equals(other.embeddedResources);
 	}
 
-	/**
-	 * Returns the state, links and embedded of the Resource
-	 * as a String. The output is <strong>not</strong> a
-	 * JSON representation of the Resource.
+	/** 
+	 * @return	The state, links and embedded resources of the Resource as a String.
+	 *			The output is <strong>not</strong> a JSON representation of the Resource.
 	 */
 	@Override
 	public String toString() {

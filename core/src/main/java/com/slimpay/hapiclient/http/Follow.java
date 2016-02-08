@@ -37,8 +37,8 @@ public final class Follow extends AbstractRequest {
 	 * @param resource	The Resource containing a Link referenced
 	 * 					by the set relation type (rel).
 	 * @return	The URL in the <code>href</code> property of the Link.
-	 * @throws LinkNotUniqueException
-	 * @throws RelNotFoundException
+	 * @throws LinkNotUniqueException if the Rel given points to an array of Links.
+	 * @throws RelNotFoundException if the Rel is inexistant in the Resource.
 	 */
 	public String getUrl(Resource resource) {
 		return resource.getLink(rel).getHref();
