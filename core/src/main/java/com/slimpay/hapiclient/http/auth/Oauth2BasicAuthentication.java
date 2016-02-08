@@ -125,6 +125,7 @@ public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 	 */
 	private synchronized void getAccessToken(final HapiClient hapiClient) throws HttpException {
 		String basic = new String(Base64.encodeBase64((userid + ":" + password).getBytes()));
+		Header acceptHeader = new BasicHeader("Accept", "application/json");
 		Header authorizationHeader = new BasicHeader("Authorization", "Basic " + basic);
 		
 		UrlEncodedBody requestData = new UrlEncodedBody();
@@ -134,6 +135,7 @@ public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 		Request request = new Request.Builder(tokenEndPointUrl)
 			.setMethod(Method.POST)
 			.setMessageBody(requestData)
+			.addHeader(acceptHeader)
 			.addHeader(authorizationHeader)
 			.build();
 		

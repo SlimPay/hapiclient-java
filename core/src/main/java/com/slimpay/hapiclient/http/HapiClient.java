@@ -337,20 +337,22 @@ public final class HapiClient implements Closeable {
 		if (messageBody != null && httpRequest instanceof HttpEntityEnclosingRequestBase)
 			((HttpEntityEnclosingRequestBase) httpRequest).setEntity(messageBody);
 		
-		// Accept header
-		String accept;
-		if (profile != null && !profile.isEmpty())
-			accept = "application/hal+json; profile=\"" + profile + "\"";
-		else
-			accept = "application/json";
-
-		httpRequest.addHeader("Accept", accept);
-		
 		// Additional headers if specified
 		List<Header> headers = request.getHeaders();
 		if (headers != null)
 			for (Header header : headers)
 				httpRequest.addHeader(header);
+		
+		// Accept header if missing
+		if (httpRequest.getFirstHeader("Accept") == null) {
+			String accept;
+			if (profile != null && !profile.isEmpty())
+				accept = "application/hal+json; profile=\"" + profile + "\"";
+			else
+				accept = "application/json";
+	
+			httpRequest.addHeader("Accept", accept);
+		}
 		
 		return httpRequest;
 	}
