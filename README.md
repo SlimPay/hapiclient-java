@@ -2,11 +2,11 @@
 
 An HTTP Client implementing the [HAL specification](https://tools.ietf.org/html/draft-kelly-json-hal-07).
 
-# Requirements
+## Requirements
 
 Java 5 or higher
 
-# Installation
+## Installation
 
 Maven dependency:
 ```xml
@@ -27,6 +27,6 @@ For Java 5 to 7 included, you also need to add:
 </dependency>
 ```
 
-# Use
+## Use
 
 Examples and full working snippets are available in our [HAPI Browser](https://dev.slimpay.com/hapi/browser).
