@@ -22,6 +22,7 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 
@@ -442,6 +443,7 @@ public final class HapiClient implements Closeable {
 		private String entryPointUrl;
 		private String profile;
 		private AuthenticationMethod authenticationMethod;
+		private HttpClientBuilder clientBuilder;
 		private HttpClientConnectionManager connectionManager;
 		
 		/**
@@ -505,6 +507,19 @@ public final class HapiClient implements Closeable {
 			this.authenticationMethod = authenticationMethod;
 			return this;
 		}
+
+		/**
+		 * Optional.
+		 * Overrides the default {@link HttpClientBuilder}.
+		 * Note: if you use this method, {@link #setConnectionManager(HttpClientConnectionManager)}
+		 * will be ignored.
+		 * @param clientBuilder	The client builder configured to fit your needs.
+		 * @return 	The builder.
+		 */
+		public Builder setClientBuilder(HttpClientBuilder clientBuilder) {
+			this.clientBuilder = clientBuilder;
+			return this;
+		}
 		
 		/**
 		 * Optional.
@@ -523,19 +538,24 @@ public final class HapiClient implements Closeable {
 		 * @return	The instantiated HapiClient.
 		 */
 		public HapiClient build() {
-			if (entryPointUrl == null || entryPointUrl.trim().isEmpty())
+			if (entryPointUrl == null || entryPointUrl.trim().isEmpty()) {
 				this.entryPointUrl = "/";
-			
-			if (connectionManager == null) {
-				// Default pooling connection manager
-				connectionManager = new PoolingHttpClientConnectionManager();
-				((PoolingHttpClientConnectionManager) connectionManager).setMaxTotal(20);
-				((PoolingHttpClientConnectionManager) connectionManager).setDefaultMaxPerRoute(5);
+			}
+
+			if (clientBuilder == null) {
+				clientBuilder = HttpClients.custom();
+				
+				if (connectionManager == null) {
+					// Default pooling connection manager
+					connectionManager = new PoolingHttpClientConnectionManager();
+					((PoolingHttpClientConnectionManager) connectionManager).setMaxTotal(20);
+					((PoolingHttpClientConnectionManager) connectionManager).setDefaultMaxPerRoute(5);
+					
+					clientBuilder.setConnectionManager(connectionManager);
+				}
 			}
 			
-			CloseableHttpClient client = HttpClients.custom().setConnectionManager(connectionManager).build();
-			
-			return new HapiClient(apiUrl, entryPointUrl, profile, authenticationMethod, client);
+			return new HapiClient(apiUrl, entryPointUrl, profile, authenticationMethod, clientBuilder.build());
 		}
 		
 	}
