@@ -3,14 +3,12 @@ package com.slimpay.hapiclient.http;
 import java.util.HashMap;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.annotation.NotThreadSafe;
 
 import com.slimpay.hapiclient.util.EntityConverter;
 
 /**
  * A HashMap representing a URL encoded message body.
  */
-@NotThreadSafe
 public final class UrlEncodedBody extends HashMap<String, String> implements MessageBody {
 	private static final long serialVersionUID = 1L;
 

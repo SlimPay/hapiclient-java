@@ -4,15 +4,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 
-import org.apache.http.annotation.ThreadSafe;
-
 import com.slimpay.hapiclient.hal.Rel;
 
 /**
  * Raised when trying to get a link or an embedded
  * resource by a non-existing relation type ({@link Rel}).
  */
-@ThreadSafe
 public class RelNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	

@@ -3,8 +3,6 @@ package com.slimpay.hapiclient.hal;
 import java.net.URI;
 import java.util.Locale;
 
-import org.apache.http.annotation.ThreadSafe;
-
 /**
  * The Extension Relation Type described in:
  * <ul>
@@ -14,7 +12,6 @@ import org.apache.http.annotation.ThreadSafe;
  * @see <a href="https://tools.ietf.org/html/draft-kelly-json-hal-07#section-8.2">The HAL Specification Section 8.2</a>
  * @see <a href="https://tools.ietf.org/html/rfc5988#section-4">RFC 5988 Section 4</a>
  */
-@ThreadSafe
 public final class CustomRel implements Rel {
 	private static final long serialVersionUID = 1L;
 	

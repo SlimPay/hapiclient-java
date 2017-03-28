@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
-import org.apache.http.annotation.NotThreadSafe;
-import org.apache.http.annotation.ThreadSafe;
 
 import com.slimpay.hapiclient.exception.LinkNotUniqueException;
 import com.slimpay.hapiclient.exception.RelNotFoundException;
@@ -19,7 +17,6 @@ import com.slimpay.hapiclient.hal.Resource;
  * values for URL variables, optional message body
  * and optional headers.
  */
-@ThreadSafe
 public final class Follow extends AbstractRequest {
 	private final Rel rel;
 	
@@ -51,7 +48,6 @@ public final class Follow extends AbstractRequest {
 		return rel;
 	}
 	
-	@NotThreadSafe
 	public static class Builder extends AbstractRequest.Builder {
 		private final Rel rel;
 		

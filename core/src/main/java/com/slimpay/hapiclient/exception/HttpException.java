@@ -1,6 +1,5 @@
 package com.slimpay.hapiclient.exception;
 
-import org.apache.http.annotation.NotThreadSafe;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
 
@@ -12,7 +11,6 @@ import com.slimpay.hapiclient.hal.Resource;
  * @see com.slimpay.hapiclient.exception.HttpClientErrorException HttpClientErrorException (4xx)
  * @see com.slimpay.hapiclient.exception.HttpServerErrorException HttpServerErrorException (5xx)
  */
-@NotThreadSafe
 public class HttpException extends Exception {
 	private static final long serialVersionUID = 1L;
 	

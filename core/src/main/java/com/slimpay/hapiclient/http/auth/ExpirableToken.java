@@ -1,8 +1,6 @@
 package com.slimpay.hapiclient.http.auth;
 
-import org.apache.http.annotation.ThreadSafe;
 
-@ThreadSafe
 public final class ExpirableToken {
 	private final String value;
 	private final Long expirationTime;

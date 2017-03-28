@@ -2,15 +2,12 @@ package com.slimpay.hapiclient.hal;
 
 import javax.json.JsonObject;
 
-import org.apache.http.annotation.ThreadSafe;
-
 
 /**
  * The Link Object described in the
  * JSON Hypertext Application Language (draft-kelly-json-hal-07)
  * @see <a href="https://tools.ietf.org/html/draft-kelly-json-hal-07#section-5">The HAL Specification Section 5</a>
  */
-@ThreadSafe
 public final class Link {
 	private final String href;
 	private final Boolean templated;

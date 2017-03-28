@@ -7,8 +7,6 @@ import javax.json.JsonObject;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.Header;
-import org.apache.http.annotation.NotThreadSafe;
-import org.apache.http.annotation.ThreadSafe;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.message.BasicHeader;
 
@@ -23,7 +21,6 @@ import com.slimpay.hapiclient.http.UrlEncodedBody;
  * <a href="https://tools.ietf.org/html/rfc2617#section-2">Basic authentication</a>
  * to get the access token.
  */
-@ThreadSafe
 public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 	private final String tokenEndPointUrl;
 	private final String userid;
@@ -171,7 +168,6 @@ public final class Oauth2BasicAuthentication implements AuthenticationMethod {
 	/**
 	 * The {@link Oauth2BasicAuthentication} builder
 	 */
-	@NotThreadSafe
 	public static class Builder {
 		private String tokenEndPointUrl;
 		private String userid;

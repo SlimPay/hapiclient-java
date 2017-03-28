@@ -9,8 +9,6 @@ import java.util.Map;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
-import org.apache.http.annotation.NotThreadSafe;
-import org.apache.http.annotation.ThreadSafe;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
@@ -66,7 +64,6 @@ import com.slimpay.hapiclient.util.EntityConverter;
  *	// ...
  *}</code></pre>
  */
-@ThreadSafe
 public final class HapiClient implements Closeable {
 	private final String apiUrl;
 	private final String entryPointUrl;
@@ -437,7 +434,6 @@ public final class HapiClient implements Closeable {
 		} catch (IOException ignored) { }
 	}
 	
-	@NotThreadSafe
 	public static class Builder {
 		private String apiUrl;
 		private String entryPointUrl;

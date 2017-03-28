@@ -4,7 +4,7 @@
 
 	<groupId>com.slimpay</groupId>
 	<artifactId>hapiclient</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3-SNAPSHOT</version>
 
 	<name>HAPI Client</name>
 	<description>HAPI Client for Java.</description>
@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.4</version>
+			<version>4.5.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.damnhandy</groupId>

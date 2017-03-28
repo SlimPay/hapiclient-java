@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
-import org.apache.http.annotation.NotThreadSafe;
-import org.apache.http.annotation.ThreadSafe;
 
 /**
  * The configuration for a request to the given 
@@ -14,7 +12,6 @@ import org.apache.http.annotation.ThreadSafe;
  * for URL variables, optional message body
  * and optional headers.
  */
-@ThreadSafe
 public final class Request extends AbstractRequest {
 	private final String url;
 
@@ -33,7 +30,6 @@ public final class Request extends AbstractRequest {
 		return url;
 	}
 	
-	@NotThreadSafe
 	public static class Builder extends AbstractRequest.Builder {
 		private final String url;
 		

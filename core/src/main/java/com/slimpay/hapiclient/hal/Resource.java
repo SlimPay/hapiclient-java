@@ -15,9 +15,6 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
 
-import org.apache.http.annotation.NotThreadSafe;
-import org.apache.http.annotation.ThreadSafe;
-
 import com.slimpay.hapiclient.exception.EmbeddedResourceNotUniqueException;
 import com.slimpay.hapiclient.exception.EmbeddedResourceUniqueException;
 import com.slimpay.hapiclient.exception.LinkNotUniqueException;
@@ -29,7 +26,6 @@ import com.slimpay.hapiclient.exception.RelNotFoundException;
  * JSON Hypertext Application Language (draft-kelly-json-hal-07)
  * @see <a href="https://tools.ietf.org/html/draft-kelly-json-hal-07#section-4">The HAL Specification Section 4</a>
  */
-@ThreadSafe
 public final class Resource implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -157,7 +153,6 @@ public final class Resource implements Serializable {
 		return (List<Resource>) resources;
 	}
 	
-	@NotThreadSafe
 	public static class Builder {
 		private JsonObject state;
 		private Map<Rel, Object> links;

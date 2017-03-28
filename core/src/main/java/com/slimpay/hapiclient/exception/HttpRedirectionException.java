@@ -1,6 +1,5 @@
 package com.slimpay.hapiclient.exception;
 
-import org.apache.http.annotation.NotThreadSafe;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
 
@@ -11,7 +10,6 @@ import org.apache.http.client.methods.HttpRequestBase;
  * we may do it at the HAPI Client level later on.
  * @see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3">10.3 Redirection 3xx</a>
  */
-@NotThreadSafe
 public class HttpRedirectionException extends HttpException {
 	private static final long serialVersionUID = 1L;
 	

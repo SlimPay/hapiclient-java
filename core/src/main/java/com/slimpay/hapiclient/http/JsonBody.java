@@ -4,11 +4,9 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.annotation.ThreadSafe;
 
 import com.slimpay.hapiclient.util.EntityConverter;
 
-@ThreadSafe
 public final class JsonBody implements MessageBody {
 	private final JsonObject jsonObject;
 	
