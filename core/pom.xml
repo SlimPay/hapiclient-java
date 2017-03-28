@@ -4,7 +4,7 @@
 
 	<groupId>com.slimpay</groupId>
 	<artifactId>hapiclient</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.3</version>
 
 	<name>HAPI Client</name>
 	<description>HAPI Client for Java.</description>
